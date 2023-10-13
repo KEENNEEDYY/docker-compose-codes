@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+  proxy:
+    driver: bridge
+
+services:
+
+  postgres:
+    image: 2e0bc99c553f
+    container_name: postgresSQL
+    environment:
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/uroot/docker-compose/postgresSQL:/var/lib/postgresql/data
+    networks:
+    - proxy
+
+  pgadmin:
+    image: 668d06fdece7
+    container_name: pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "9090:80"
+    depends_on:
+      - postgres
+    networks:
+      - proxy
