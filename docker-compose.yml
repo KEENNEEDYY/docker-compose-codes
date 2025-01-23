@@ -7,7 +7,7 @@ networks:
 services:
 
   postgres:
-    image: 2e0bc99c553f
+    image: postgres:latest
     container_name: postgresSQL
     environment:
       POSTGRES_PASSWORD: "123456"
@@ -19,7 +19,7 @@ services:
     - proxy
 
   pgadmin:
-    image: 668d06fdece7
+    image: dpage/pgadmin4:latest
     container_name: pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
